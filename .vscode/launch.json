@@ -8,7 +8,7 @@
       "name": "(gdb) Launch",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${fileDirname}/${fileBasenameNoExtension}", //调试程序的路径名称
+      "program": "${fileDirname}/${fileBasenameNoExtension}.out", //调试程序的路径名称
       "args": [],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",
