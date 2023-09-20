@@ -5,16 +5,17 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "(gdb) Launch",
+      "name": "gdb",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${fileDirname}/${fileBasenameNoExtension}.out", //调试程序的路径名称
+      "program": "${fileDirname}/${fileBasenameNoExtension}.o",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",
       "environment": [],
       "externalConsole": false,
       "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",
@@ -27,8 +28,16 @@
           "ignoreFailures": true
         }
       ],
-      "preLaunchTask": "g++ build active file",
-      "miDebuggerPath": "/usr/bin/gdb"
+      "preLaunchTask": "g++: build active file"
+    },
+    {
+      "name": "lldb",
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/${workspaceFolderBasename}.o",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "clang++: build active file"
     }
   ]
 }
