@@ -9,7 +9,7 @@
         "-std=c++17",
         "-g",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}.o",
+        "${workspaceFolder}/build/${fileBasenameNoExtension}",
         "${file}"
       ],
       "options": {
@@ -31,7 +31,7 @@
         "-g",
         "-Wall",
         "-o",
-        "${workspaceFolder}/${fileBasenameNoExtension}.o",
+        "${workspaceFolder}/build/${fileBasenameNoExtension}",
         "${file}"
       ],
       "group": {
