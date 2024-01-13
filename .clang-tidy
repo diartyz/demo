@@ -8,6 +8,7 @@ Checks: >
   google-*,
   modernize-*,
   performance-*,
+  -modernize-use-nodiscard,
   -modernize-use-trailing-return-type,
 CheckOptions:
   - key: llvm-else-after-return.WarnOnConditionVariables
