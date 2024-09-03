@@ -10,19 +10,17 @@ const int FIRST_EMPLOYEE_NUMBER = 1000;
 
 class DataBase {
 public:
-  Employee &addEmployee(const std::string &firstName,
-                        const std::string &lastName);
-  Employee &getEmployee(int employeeNumber);
-  Employee &getEmployee(const std::string &firstName,
-                        const std::string &lastName);
+    Employee &addEmployee(const std::string &firstName, const std::string &lastName);
+    Employee &getEmployee(int employeeNumber);
+    Employee &getEmployee(const std::string &firstName, const std::string &lastName);
 
-  void displayAll() const;
-  void displayCurrent() const;
-  void displayFormer() const;
+    void displayAll() const;
+    void displayCurrent() const;
+    void displayFormer() const;
 
 private:
-  std::vector<Employee> employees;
-  int nextEmployeeNumber = FIRST_EMPLOYEE_NUMBER;
+    std::vector<Employee> employees_;
+    int nextEmployeeNumber_{FIRST_EMPLOYEE_NUMBER};
 };
 
-} // namespace Records
+}  // namespace Records
