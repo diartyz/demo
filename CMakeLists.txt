@@ -11,7 +11,11 @@ SET(SRC_LIST main.cpp)
 
 add_executable(${PROJECT_NAME} ${SRC_LIST})
 
+# enable format
+add_subdirectory(fmt-11.0.2)
+
 # enable pthread
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
-target_link_libraries(${PROJECT_NAME} PUBLIC Threads::Threads)
+
+target_link_libraries(${PROJECT_NAME} PUBLIC fmt::fmt Threads::Threads)
