@@ -3,6 +3,7 @@
 #include <string>
 
 #include "database.h"
+#include "fmt/format.h"
 
 int displayMenu();
 void doHire(Records::DataBase &db);
@@ -39,7 +40,7 @@ int main()
                 db.displayFormer();
                 break;
             default:
-                std::cerr << "Unknown command. Try again." << std::endl;
+                std::cerr << "Unknown command. Try again.\n";
                 break;
         }
     }
@@ -47,16 +48,19 @@ int main()
 
 int displayMenu()
 {
-    std::cout << "0. Quit\n";
-    std::cout << "1. Hire\n";
-    std::cout << "2. Fire\n";
-    std::cout << "3. Promote\n";
-    std::cout << "4. Display all\n";
-    std::cout << "5. Display current\n";
-    std::cout << "6. Display former\n";
-    std::cout << "0. Quit\n";
-    std::cout << "Enter your selection: ";
     int selection;
+    std::cout << "\n";
+    std::cout << "Employee Database\n";
+    std::cout << "-----------------\n";
+    std::cout << "1. Hire a new employee\n";
+    std::cout << "2. Fire an employee\n";
+    std::cout << "3. Promote an employee\n";
+    std::cout << "4. List all employees\n";
+    std::cout << "5. List all current employees\n";
+    std::cout << "6. List all former employees\n";
+    std::cout << "0. Quit\n";
+    std::cout << "\n";
+    std::cout << "Enter your selection: ";
     std::cin >> selection;
     return selection;
 }
@@ -66,27 +70,28 @@ void doHire(Records::DataBase &db)
     std::string firstName;
     std::string lastName;
 
-    std::cout << "Enter first name: ";
+    std::cout << "First name? ";
     std::cin >> firstName;
-    std::cout << "Enter last name: ";
+    std::cout << "Last name? ";
     std::cin >> lastName;
     auto &employee{db.addEmployee(firstName, lastName)};
-    std::cout << "Hired employee " << firstName << " " << lastName << " with employee number "
-              << employee.getEmployeeNumber() << std::endl;
+    std::cout << fmt::format("Hired employee {} {} with employee number {}.", firstName, lastName,
+                             employee.getEmployeeNumber())
+              << "\n";
 }
 
 void doFire(Records::DataBase &db)
 {
     int employeeNumber;
-    std::cout << "Enter employee number: ";
+    std::cout << "Employee number? ";
     std::cin >> employeeNumber;
 
     try {
         Records::Employee &employee{db.getEmployee(employeeNumber)};
         employee.fire();
-        std::cout << "Employee " << employeeNumber << " fired.\n";
+        std::cout << fmt::format("Employee {} terminated.", employeeNumber) << "\n";
     } catch (const std::logic_error &e) {
-        std::cerr << "Unable to terminate employee: " << e.what() << std::endl;
+        std::cerr << fmt::format("Unable to terminate employee: {}", e.what()) << "\n";
     }
 }
 
@@ -95,17 +100,16 @@ void doPromote(Records::DataBase &db)
     int employeeNumber;
     int raiseAmount;
 
-    std::cout << "Enter employee number: ";
+    std::cout << "Employee number? ";
     std::cin >> employeeNumber;
 
-    std::cout << "How much of a raise would you like to give? ";
+    std::cout << "How much of a raise? ";
     std::cin >> raiseAmount;
 
     try {
         Records::Employee &employee{db.getEmployee(employeeNumber)};
         employee.promote(raiseAmount);
-        std::cout << "Employee " << employeeNumber << " promoted.\n";
     } catch (const std::logic_error &e) {
-        std::cerr << "Unable to promote employee: " << e.what() << std::endl;
+        std::cerr << fmt::format("Unable to promote employee: {}", e.what()) << "\n";
     }
 }
