@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "fmt/format.h"
+
 namespace Records {
 
 Employee::Employee(const std::string &firstName, const std::string &lastName)
@@ -29,10 +31,11 @@ void Employee::fire()
 
 void Employee::display() const
 {
-    std::cout << "Employee: " << getFirstName() << " " << getLastName() << std::endl;
-    std::cout << "Hired: " << isHired() << std::endl;
-    std::cout << "Salary: $" << getSalary() << std::endl;
-    std::cout << std::endl;
+    std::cout << fmt::format("Employee: {}, {}", getFirstName(), getLastName()) << "\n";
+    std::cout << (isHired() ? "Current Employee" : "Former Employee") << "\n";
+    std::cout << fmt::format("Employee Number: {}", getEmployeeNumber()) << "\n";
+    std::cout << fmt::format("Salary: ${}", getSalary()) << "\n";
+    std::cout << "\n";
 }
 
 void Employee::setFirstName(const std::string &firstName)
