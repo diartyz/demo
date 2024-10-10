@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# SET(SRC_LIST demo.cpp database.cpp employee.cpp)
-SET(SRC_LIST main.cpp)
+SET(SRC_LIST demo.cpp database.cpp employee.cpp)
+# SET(SRC_LIST main.cpp)
 
 add_executable(${PROJECT_NAME} ${SRC_LIST})
 

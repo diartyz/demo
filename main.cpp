@@ -1,15 +1,29 @@
-#include <cstring>
+#include <array>
+#include <cstddef>
+#include <initializer_list>
 #include <iostream>
+#include <limits>
+#include <optional>
+#include <stdexcept>
 
-char* copyString(const char* str)
+#include "fmt/format.h"
+
+double devideNumbers(double numerator, double denominator)
 {
-    char* result{new char[strlen(str) + 1]};
-    strcpy(result, str);
-    return result;
+    if (denominator == 0) {
+        throw std::invalid_argument{"Denominator cannot be zero"};
+    }
+    return numerator / denominator;
 }
 
 int main()
 {
-    std::cout << std::format("There are {} ways I love you.", 219);
+    try {
+        std::cout << devideNumbers(2.5, 0.5) << std::endl;
+        std::cout << devideNumbers(2.5, 0) << std::endl;
+    } catch (const std::invalid_argument& exception) {
+        std::cout << fmt::format("Exception caught: {}", exception.what()) << std::endl;
+    }
+
     return 0;
 }
